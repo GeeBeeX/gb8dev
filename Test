@@ -15,4 +15,6 @@ check_submodules() {
 
 PROJDIR=$(cd "$(dirname "$0")" && pwd -P)
 
+cd "$PROJDIR"
 check_submodules
+. ./pactivate -q
