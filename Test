@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+warn() { echo 1>&2 "WARNING:" "$@"; }
+
+check_submodules() {
+    count=$(git submodule status --recursive | sed -n -e '/^[^ ]/p' | wc -l)
+    [ $count -eq 0 ] || {
+        warn "$count Git submodules are not up to date"
+        warn 'Run `git submodule update --init`?'
+    }
+}
+
+####################################################################
+
+PROJDIR=$(cd "$(dirname "$0")" && pwd -P)
+
+check_submodules
