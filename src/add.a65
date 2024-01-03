@@ -1,0 +1,11 @@
+;   XXX
+
+            cpu 6502
+            org $1000
+
+addAX:
+            stx $10
+            clc
+            adc $10
+
+            rts
