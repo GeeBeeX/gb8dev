@@ -3,22 +3,17 @@ set -euo pipefail
 
 warn() { echo 1>&2 "WARNING:" "$@"; }
 
-check_submodules() {
-    count=$(git submodule status --recursive | sed -n -e '/^[^ ]/p' | wc -l)
-    [ $count -eq 0 ] || {
-        warn "$count Git submodules are not up to date"
-        warn 'Run `git submodule update --init`?'
-    }
-}
-
 ####################################################################
 
 export T8_PROJDIR=$(cd "$(dirname "$0")" && pwd -P)
-. $T8_PROJDIR/t8dev/project-setup.bash
+t8dir=t8dev    # or whatever your submodule path is
+[[ -r $T8_PROJDIR/$t8dir/t8setup.bash ]] \
+    || git submodule update --init "$T8_PROJDIR/$t8dir"
+. "$T8_PROJDIR"/$t8dir/t8setup.bash
 
 t8dev="$T8_PROJDIR/t8dev/bin/t8dev"
 cd "$T8_PROJDIR"
 
-$t8dev buildtoolset asl
-$t8dev aslauto exe/ src/
-$t8dev pytest -- "$@"
+t8dev buildtoolset asl
+t8dev aslauto exe/ src/
+t8dev pytest -- "$@"
