@@ -1,0 +1,4 @@
+object_files = 'src/pc8hello.z80'
+
+def test_nothing():
+    pass
