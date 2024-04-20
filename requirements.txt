@@ -1,3 +1,4 @@
 py65@git+https://github.com/mnaberez/py65.git
 pytest
 requests
+patool
