@@ -16,4 +16,4 @@ cd "$T8_PROJDIR"
 
 t8dev buildtoolset asl
 t8dev aslauto exe/ src/
-t8dev pytest -- "$@"
+(cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
