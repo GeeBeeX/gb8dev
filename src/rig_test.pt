@@ -1,0 +1,17 @@
+''' Stand-alone program demonstrating use of a test rig.
+'''
+
+from    testmc.mos65  import Machine
+import  pytest
+
+test_rig = '''
+        cpu 6502
+        org $1000
+
+test    lda #$AC
+        rts
+'''
+
+def test_testrig(m, R, S):
+    m.call(S.test)
+    assert R(a=0xAC) == m.regs
