@@ -18,3 +18,8 @@ t8dev buildtoolset asl
 t8dev buildtoolset cscp
 t8dev aslauto exe/ src/
 (cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
+
+#   This should be parametrised so that the user can decide if she wants to
+#   run an emulator on some code after all tests pass and, if so, which
+#   emulator on which code.
+t8dev e cscp tk85
