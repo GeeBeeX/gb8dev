@@ -26,6 +26,4 @@ t8dev aslauto exe/ src/
 echo REMOVING FILES
 rm -rf .download/rom-image/ .build/emulator/pc8001/
 t8dev e cscp pc8001 xxx=foo \
-    n80=@0000:https://gitlab.com/…/-/raw/main/rom/80/N80_102.bin \
-    || true # XXX always continue
-tree .download/ .build/emulator/pc8001/
+    n80=@0000:https://gitlab.com/…/-/raw/main/rom/80/N80_102.bin
