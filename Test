@@ -20,11 +20,7 @@ t8dev buildtoolset RunCPM
 t8dev aslauto exe/ src/
 (cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
 
-#   This should be parametrised so that the user can decide if she wants to
-#   run an emulator on some code after all tests pass and, if so, which
-#   emulator on which code.
-echo REMOVING FILES
-rm -rf .download/rom-image/ .build/emulator/pc8001/
-#t8dev e cscp pc8001 \
-#    n80=@0000:https://gitlab.com/retroabandon/pc8001-re/-/raw/main/rom/80/N80_102.bin
-t8dev e cscp tk80bs
+#   PC-8001 Expansion ROM
+pc8extmon=.build/obj/src/pc8extmon
+p2bin -q -l 0 "$pc8extmon.p" "$pc8extmon.bin"
+t8dev emulator cscp pc8001 n80=@7000:"$pc8extmon.bin"

@@ -1,0 +1,19 @@
+;   XXX document me!
+
+            relaxed on              ; accept $nn hex number syntax
+            cpu  z80
+
+            org  $7000
+start       ld   hl,msg
+loop        ld   a,(hl)
+            or   a
+            ret  z
+            rst  $18
+            inc  hl
+            jp   loop
+
+msg         db 'No monitor for you!',0
+
+            org  $7FFC
+            jp   start
+            db   $55
