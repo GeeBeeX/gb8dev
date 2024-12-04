@@ -15,6 +15,7 @@ t8dev="$T8_PROJDIR/t8dev/bin/t8dev"
 cd "$T8_PROJDIR"
 
 t8dev buildtoolset asl
+t8dev buildtoolset ctools
 t8dev buildtoolset cscp
 t8dev buildtoolset RunCPM
 t8dev aslt8dev
