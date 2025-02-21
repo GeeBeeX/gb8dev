@@ -1,5 +1,5 @@
--e t8dev/ == 0.2.*
--e r8format/
+-e t8dev/r8format/
+-e t8dev/t8dev/ == 0.2.*
 
 #   In case we want to try latest unreleased version.
 #py65@git+https://github.com/mnaberez/py65.git

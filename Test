@@ -6,19 +6,19 @@ warn() { echo 1>&2 "WARNING:" "$@"; }
 ####################################################################
 
 export T8_PROJDIR=$(cd "$(dirname "$0")" && pwd -P)
-t8dir=t8dev    # or whatever your submodule path is
+t8dir=t8dev/t8dev/    # or whatever your submodule path is
 [[ -r $T8_PROJDIR/$t8dir/t8setup.bash ]] \
     || git submodule update --init "$T8_PROJDIR/$t8dir"
 . "$T8_PROJDIR"/$t8dir/t8setup.bash
 
 cd "$T8_PROJDIR"
 
-t8dev buildtoolset asl
-t8dev buildtoolset ctools
-t8dev buildtoolset cscp
-t8dev buildtoolset RunCPM
-t8dev aslt8dev
-t8dev aslauto exe/ src/
+t8dev toolset asl
+t8dev toolset ctools
+t8dev toolset cscp
+t8dev toolset RunCPM
+t8dev asl t8dev
+t8dev asl auto exe/ src/
 (cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
 
 #   PC-8001 Expansion ROM
