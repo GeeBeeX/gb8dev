@@ -24,4 +24,4 @@ t8dev asl auto exe/ src/
 #   PC-8001 Expansion ROM
 pc8extmon=.build/obj/src/pc8extmon
 p2bin -q -l 0 "$pc8extmon.p" "$pc8extmon.bin"
-t8dev emulator cscp pc8001 n80=@7000:"$pc8extmon.bin"
+#t8dev emulator cscp pc8001 n80=@7000:"$pc8extmon.bin"
