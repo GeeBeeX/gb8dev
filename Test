@@ -19,6 +19,10 @@ t8dev toolset cscp
 t8dev toolset RunCPM
 t8dev asl t8dev
 t8dev asl auto exe/ src/
+manual_build=(
+    exe/sharp.z80
+)
+t8dev asl asm "${manual_build[@]}"
 (cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
 
 #   PC-8001 Expansion ROM

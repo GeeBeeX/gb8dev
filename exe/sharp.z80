@@ -1,0 +1,33 @@
+
+            cpu Z80
+            relaxed on          ; allow $NN hex constants
+
+CR          equ  $0D            ; ASCII carriage return
+
+MSG         equ  $0015
+PROMPT      equ  $00AD          ; return MON for MZ-700 only
+
+; ----------------------------------------------------------------------
+;   `.mzf` Tape Header, until we make a program that can build this.
+
+mzf         org  $1180
+.type       db   $01
+.filename   db   'GB8DEV/HELLO'
+            db   17 - ($ - .filename) dup CR
+.size       dw   0
+.start      dw   0
+.entry      dw   0
+
+; ----------------------------------------------------------------------
+
+            org  $1200
+start
+            ld   de,hello
+            call MSG
+            jp   PROMPT
+
+hello       db   'HELLO',CR
+
+end         end  start
+
+
