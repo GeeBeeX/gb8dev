@@ -17,15 +17,26 @@ t8dev toolset asl
 t8dev toolset ctools
 t8dev toolset cscp
 t8dev toolset RunCPM
+
+####################################################################
+#   Assembly
+
 t8dev asl t8dev
 t8dev asl auto exe/ src/
 manual_build=(
     exe/sharp.z80
 )
 t8dev asl asm "${manual_build[@]}"
+p2bin .build/obj/exe/sharp.p .build/obj/exe/sharp.mzf
+
+####################################################################
+#   Unit tests
+
 (cd - && t8dev pytest -- "$@")  # Use original dir for relative cmd line params
 
+####################################################################
 #   PC-8001 Expansion ROM
+
 pc8extmon=.build/obj/src/pc8extmon
 p2bin -q -l 0 "$pc8extmon.p" "$pc8extmon.bin"
 #t8dev emulator cscp pc8001 n80=@7000:"$pc8extmon.bin"
