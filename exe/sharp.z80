@@ -4,6 +4,7 @@
 
 CR          equ  $0D            ; ASCII carriage return
 
+LETNL       equ  $0006
 MSG         equ  $0015
 PROMPT      equ  $00AD          ; return MON for MZ-700 only
 
@@ -14,19 +15,21 @@ mzf         org  $1180
 .type       db   $01
 .filename   db   'GB8DEV/HELLO'
             db   17 - ($ - .filename) dup CR
-.size       dw   0
-.start      dw   0
-.entry      dw   0
+.size       dw   end-start
+.start      dw   start
+.entry      dw   start
 
 ; ----------------------------------------------------------------------
 
             org  $1200
 start
+            call LETNL
             ld   de,hello
             call MSG
+            call LETNL
             jp   PROMPT
 
-hello       db   'HELLO',CR
+hello       db   'HELLO!',CR
 
 end         end  start
 
